@@ -1,0 +1,34 @@
+{
+  "passfail": false,
+  "noyield": true,
+  //Tolerate generator functions with no yield statement in them.
+  "nonew": true,
+  //Prohibit use of constructors for side-effects (without assignment)
+  "funcscope": true,
+  //Suppresses warnings about declaring variables inside of control structures while accessing them later from the outside.
+  "validthis": true,
+  //Tolerate using this in a non-constructor function
+  "latedef": "nofunc",
+  // Prohibits the use of a variable before it was defined
+  "unused": "vars",
+  //Warns when you define and never use your variables.
+  "trailing": true,
+  //Trailing spaces
+  "forin": true,
+  // Require filtering for..in loops with obj.hasOwnProperty()
+  "noempty": true,
+  //Prohibit use of empty blocks
+  "node": true,
+  //Node.js
+  "eqeqeq": true,
+  //Require triple equals (===) for comparison
+  "sub": true,
+  //Tolerate using `[]` notation when it can still be expressed in dot notation
+  "bitwise": true,
+  //Prohibit bitwise operators (&, |, ^, etc.)
+  "freeze": true,
+  //prohibits overwriting prototypes of native objects such as Array, Date etc.
+  "curly": true,
+  "esnext": true
+  // allow ES6 syntax
+}

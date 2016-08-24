@@ -1,0 +1,26 @@
+{
+  "name": "jira-link-tickets-from-git-commits",
+  "version": "1.0.0",
+  "description": "Links all jira-issues found in git commits since a given git tag to a specified jira ticket. In our usecase, a release-ticket needs to be linked to every commited jira issue.",
+  "main": "jira-commit-linker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxmarkus/jira-link-tickets-from-git-commits.git"
+  },
+  "author": "markus@edenhauser.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maxmarkus/jira-link-tickets-from-git-commits/issues"
+  },
+  "homepage": "https://github.com/maxmarkus/jira-link-tickets-from-git-commits#readme",
+  "dependencies": {
+    "async": "2.0.1",
+    "jira-client": "3.0.2",
+    "lodash": "4.15.0",
+    "prompt": "1.0.0",
+    "yargs": "5.0.0"
+  }
+}
