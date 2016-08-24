@@ -14,15 +14,16 @@
  * you may define your settings upfront, so you don't need to provide them
  * export JIRA_USER=youmail.whatever@mail.at
  * export JIRA_PASS=yoursecretpassword
- * 
  *
  * tested on mac os 10.10, git 2.5.4, node 5.10.1, npm 3.8.3
  */
 
 // =================== SETTINGS ===================
 
-const jiraLinkIssueTypeName = "Release Decision"; // You can get a list via GET /rest/api/2/issueLinkType on your jira
+// If you are not sure what to use, you can get a list via GET /rest/api/2/issueLinkType on your jira
+const jiraLinkIssueTypeName = "Release Decision"; 
 
+// general jira server settings
 let jiraSettings = {
   protocol: 'https',
   host: 'jira.hybris.com',
@@ -64,10 +65,10 @@ let argv = yargs.usage('Usage: $0 [options]')
 .nargs('tag', 1)
 .describe('tag', 'Tag which is used to get list of tickets')
 
-.demand('releaseticket')
-.alias('releaseticket', 'r')
-.nargs('releaseticket', 1)
-.describe('releaseticket', 'Target release-ticket id (FOO-0000) where links are being created')
+.demand('releaseissue')
+.alias('releaseissue', 'r')
+.nargs('releaseissue', 1)
+.describe('releaseissue', 'Target release-ticket id (FOO-0000) where links are being created')
 
 .demand('path')
 .alias('path', 'p')
@@ -165,7 +166,7 @@ const extractAndUnifyIssueNumbers = (inputArrOfStrings) => {
 const getLinkedIssuesFromTicket = (issueNumber) => {
 
     if(!issueNumber){
-        console.log('invalid releaseticket param', issueNumber);
+        console.log('invalid releaseissue param', issueNumber);
         return;
     }
     
@@ -207,7 +208,7 @@ const linkIssue = (issue, cb) => {
             "name": jiraLinkIssueTypeName
         },
         "outwardIssue": {
-            "key": argv.releaseticket
+            "key": argv.releaseissue
         },
         "inwardIssue": {
             "key": issue
@@ -262,7 +263,7 @@ const runApplication = function(err, result) {
     })
     .then(commitIssues => {
         initJira();
-        return getLinkedIssuesFromTicket(argv.releaseticket);
+        return getLinkedIssuesFromTicket(argv.releaseissue);
     })
     .then(linkedIssues => {
         let notLinkedIssues = commitIssues.filter(issue => linkedIssues.indexOf(issue)===-1);
