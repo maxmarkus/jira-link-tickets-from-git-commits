@@ -4,7 +4,7 @@ Links all jira-issues found in git commits since a given git tag to a specified 
 
 Prerequisites: node 5+ and git 2.5+ must be available globally
 
-# Usage
+## Usage
 
     # you may define your settings upfront, so you don't need to provide them
     export JIRA_USER=youmail.whatever@mail.at
@@ -15,6 +15,13 @@ Prerequisites: node 5+ and git 2.5+ must be available globally
     # short
     ./jira-commit-linker.js -t v1.7.0 -p ../projectfolder -r FOO-2560
 
-# Compatibility
+## Actions performed
+
+- read commits from local branch
+- grab all jira ticket numbers of the commit messages and make them unique
+- read current links of --releaseissue issue
+- create links for not yet linked tickets
+
+## Compatibility
 
 developed and tested on mac os 10.10, git 2.5.4, node 5.10.1, npm 3.8.3
