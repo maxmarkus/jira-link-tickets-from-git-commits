@@ -54,6 +54,7 @@ const _ = require('lodash');
 const prompt = require('prompt');
 const JiraApi = require('jira-client');
 const yargs = require('yargs');
+const semver = require('semver');
 const jiraMatcher = /\d+-[A-Z]+(?!-?[a-zA-Z]{1,10})/g; // https://answers.atlassian.com/questions/325865/regex-pattern-to-match-jira-issue-key
 let jira, createQueue;
 
@@ -130,7 +131,12 @@ const execSync = (command) => {
 };
 
 const getTimeStampFromTagName = (tag, cb) => {
-    const tags = execSync('git tag').reverse(); // , {stdio:[0,1,2]}
+    const tags = execSync('git tag')
+        .sort((a,b) => {
+            if(semver.gt(a,b)) return -1;
+            else if(semver.lt(a,b)) return 1;
+            else return 0;
+        }); // , {stdio:[2,1,0]}
     let tagsBack = tags.indexOf(tag) + 1; // raise the index by one
     
     if(tagsBack !== -1){
